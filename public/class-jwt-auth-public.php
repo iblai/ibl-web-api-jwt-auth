@@ -226,6 +226,16 @@ class Jwt_Auth_Public {
 			return $user;
 		}
 
+		/**
+		 * 
+		 **/
+		$whitelist_urls = apply_filters( "jwt_auth_whitelist", [] );
+		foreach ($whitelist_urls as $url) {
+            if (preg_match("~$url~", $requested_url) == 1 ) {
+                return $user;
+            }
+        }
+		
 		/*
 		 * if the request URI is for validate the token don't do anything,
 		 * this avoids double calls.
