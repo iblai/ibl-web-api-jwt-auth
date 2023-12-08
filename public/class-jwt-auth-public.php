@@ -232,7 +232,7 @@ class Jwt_Auth_Public {
 		$whitelist_urls = defined("JWT_AUTH_WHITELIST") ? JWT_AUTH_WHITELIST : [];
 		foreach ($whitelist_urls as $url) {
             if (preg_match("~$url~", $requested_url) == 1 ) {
-                return $user;
+                return get_user_by('login', 'ibl_user')->ID;
             }
         }
 		
